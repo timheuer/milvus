@@ -229,6 +229,7 @@ type commonConfig struct {
 
 	AuthorizationEnabled ParamItem `refreshable:"false"`
 	SuperUsers           ParamItem `refreshable:"true"`
+	DefaultRootPassword  ParamItem `refreshable:"Milvus"`
 
 	ClusterName ParamItem `refreshable:"false"`
 
@@ -604,6 +605,14 @@ This configuration is only used by querynode and indexnode, it selects CPU instr
 		Export:       true,
 	}
 	p.AuthorizationEnabled.Init(base.mgr)
+
+	p.DefaultRootPassword = ParamItem{
+		Key:          "common.security.defaultRootPassword",
+		Version:      "2.0.0",
+		DefaultValue: "Milvus",
+		Export:       true,
+	}
+	p.DefaultRootPassword.Init(base.mgr)
 
 	p.SuperUsers = ParamItem{
 		Key:     "common.security.superUsers",
